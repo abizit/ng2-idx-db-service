@@ -40,7 +40,7 @@ export class IndexedDbService {
       };
       // error
       request.onerror = (event: Event) => {
-        this.logger.logError('IndexedDB service: ' + (<IDBOpenDBRequest>event.target).error.name);
+        this.logger.logError('IndexedDB service: openDBAsync: ' + (<IDBOpenDBRequest>event.target).error.name);
         observer.error((<IDBOpenDBRequest>event.target).error.name);
       };
       // upgrade - does not exist - create it.
@@ -72,7 +72,7 @@ export class IndexedDbService {
       };
       // Error.
       request.onerror = (event: Event) => {
-        this.logger.logError('IndexedDB service: ' + (<IDBRequest>event.target).error.name);
+        this.logger.logError('IndexedDB service: getAllRecordsAsync: ' + (<IDBRequest>event.target).error.name);
         observer.error((<IDBRequest>event.target).error.name);
       }
     });
@@ -90,7 +90,7 @@ export class IndexedDbService {
       };
       // Error.
       request.onerror = (event: Event) => {
-        console.log('IndexedDB service: ' + (<IDBRequest>event.target).error.name);
+        this.logger.logError('IndexedDB service: createRecordAsync: ' + (<IDBRequest>event.target).error.name);
         observer.error((<IDBRequest>event.target).error.name);
       }
     });
@@ -109,7 +109,7 @@ export class IndexedDbService {
       };
       // Error.
       request.onerror = (event: Event) => {
-        console.log('IndexedDB service: ' + (<IDBRequest>event.target).error.name);
+        this.logger.logError('IndexedDB service: updateRecordAsync: ' + (<IDBRequest>event.target).error.name);
         observer.error((<IDBRequest>event.target).error.name);
       }
     });
@@ -127,7 +127,7 @@ export class IndexedDbService {
       };
       // Error.
       request.onerror = (event: Event) => {
-        console.log('IndexedDB service: ' + (<IDBRequest>event.target).error.name);
+        this.logger.logError('IndexedDB service: deleteRecordAsync: ' + (<IDBRequest>event.target).error.name);
         observer.error((<IDBRequest>event.target).error.name);
       }
     });
@@ -145,7 +145,7 @@ export class IndexedDbService {
       };
       // Error.
       request.onerror = (event: Event) => {
-        console.log('IndexedDB service: ' + (<IDBRequest>event.target).error.name);
+        this.logger.logError('IndexedDB service: clearObjectStorage: ' + (<IDBRequest>event.target).error.name);
         observer.error((<IDBRequest>event.target).error.name);
       }
     });

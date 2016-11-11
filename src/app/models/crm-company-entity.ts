@@ -62,10 +62,7 @@ export class CompanyEntity {
    *
    * @param record
    */
-  editRecord(record: Company) {
-    record.dirty = true;
-    record.lastChange = Date.now();
-    record.lastSync = 0;
+  updateRecord(record: Company) {
     var index: number = this.companies.indexOf(record);
     this.companies[index] = record;
   }

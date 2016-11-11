@@ -22,23 +22,25 @@
     </div>
     <div class="ui button" tabindex="0" (click)="createRecord(newCompany)">Create company</div>
   </div>
-
+  <hr/>
   <div class="ui cards">
     <div class="card" *ngFor="let c of companies | async">
-      <div class="content">
-        <div class="header">{{c.name}}</div>
-        <div class="extra">
-          {{c.address1}}
+      <div *ngIf="!c.remove">
+        <div class="content">
+          <div class="header">{{c.name}}</div>
+          <div class="extra">
+            {{c.address1}}
+          </div>
+          <div class="extra">
+            {{c.zip}} {{c.city}}
+          </div>
+          <div class="description">
+            {{c.companyId}}
+          </div>
         </div>
-        <div class="extra">
-          {{c.zip}} {{c.city}}
+        <div class="ui bottom attached button" (click)="deleteRecord(c)">
+          <i class="delete icon"></i>
         </div>
-        <div class="description">
-          {{c.companyId}}
-        </div>
-      </div>
-      <div class="ui bottom attached button">
-        <i class="edit icon"></i>
       </div>
     </div>
   </div>

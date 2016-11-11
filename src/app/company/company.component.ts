@@ -34,47 +34,50 @@ export class CompanyComponent implements OnInit {
   }
 
   createRecord(cfg: CrmCompanyConfig) {
-    this.logger.logInfo(JSON.stringify(cfg));
-    var company: Company = new Company(cfg);
+    var record: Company = new Company(cfg);
     this.newCompany = new CrmCompanyConfig;
-    company.companyId = this.entity.createKey();
-    this.logger.logDebug('companyId: ' + company.companyId);
-    company.lastSync = 0;
-    company.lastChange = Date.now();
-    company.userId = this.config.userId;
-    this.indexedDb.createRecordAsync(this.config.companyStore, company).forEach(
+    record.companyId = this.entity.createKey();
+    record.lastSync = 0;
+    record.lastChange = Date.now();
+    record.userId = this.config.userId;
+    this.indexedDb.createRecordAsync(this.config.companyStore, record).forEach(
       (readyState)=> {
         this.logger.logInfo('IndexedDB service: adding record: ' + readyState);
       }, null);
-    this.entity.addRecord(company);
+    this.entity.addRecord(record);
   }
 
-  deleteRecord(company: Company) {
-    company.remove = true;
-    company.dirty = true;
-    company.lastSync = 0;
-    var key: string = company.companyId;
-    this.indexedDb.deleteRecordAsync(this.config.companyStore, key).forEach(
+  deleteRecord(record: Company) {
+    record.remove = true;
+    record.dirty = true;
+    record.lastSync = 0;
+    var key: string = record.companyId;
+    // this.indexedDb.deleteRecordAsync(this.config.companyStore, key).forEach(
+    this.indexedDb.updateRecordAsync(this.config.companyStore, key).forEach(
       (readyState)=> {
-        this.logger.logInfo('IndexedDB service: deleting record: ' + readyState);
+        this.logger.logInfo('IndexedDB service: removing record: ' + readyState);
       }, null
     );
-    this.entity.deleteRecord(company);
+    // this.entity.deleteRecord(record);
+    this.entity.updateRecord(record);
   }
 
-  updateRecord(company: Company) {
-    this.indexedDb.updateRecordAsync(this.config.companyStore, company).forEach(
+  updateRecord(record: Company) {
+    record.dirty = true;
+    record.lastChange = Date.now();
+    record.lastSync = 0;
+    this.indexedDb.updateRecordAsync(this.config.companyStore, record).forEach(
       (readyState)=> {
-        this.logger.logInfo('IndexedDB service: editing record: ' + readyState);
+        this.logger.logInfo('IndexedDB service: updating record: ' + readyState);
       }, null
     );
-    this.entity.editRecord(company);
+    this.entity.updateRecord(record);
   }
 
   clearRecords() {
     this.indexedDb.clearObjectStoreAsync(this.config.companyStore).forEach(
       (readyState) => {
-        this.logger.logInfo('IndexedDB service: clearing object store: ' + this.config.companyStore + ': ' + readyState);
+        this.logger.logInfo('IndexedDB service: clearing storage: ' + this.config.companyStore + ': ' + readyState);
       }, null
     )
   }
