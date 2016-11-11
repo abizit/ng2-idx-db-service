@@ -18,9 +18,14 @@
       "prefix": "app",
       "mobile": false,
       "styles": [
+        "../semantic/dist/semantic.css",
         "styles.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/jquery/dist/jquery.js",
+        "../semantic/dist/semantic.js",
+        "../node_modules/node-uuid/uuid.js"
+      ],
       "environments": {
         "source": "environments/environment.ts",
         "dev": "environments/environment.ts",

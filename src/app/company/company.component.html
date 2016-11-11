@@ -1,0 +1,46 @@
+<div class="ui fluid container">
+  <div class="ui form">
+    <div class="field">
+      <label>Company</label>
+      <div class="two fields">
+        <input [(ngModel)]="newCompany.name" placeholder="Company"/>
+      </div>
+    </div>
+    <div class="field">
+      <label>Billing Address</label>
+      <div class="fields">
+        <div class="twelve wide field">
+          <input [(ngModel)]="newCompany.address1" placeholder="Street address"/>
+        </div>
+        <div class="four wide field">
+          <input [(ngModel)]="newCompany.zip" placeholder="Zip"/>
+        </div>
+        <div class="four wide field">
+          <input [(ngModel)]="newCompany.city" placeholder="City"/>
+        </div>
+      </div>
+    </div>
+    <div class="ui button" tabindex="0" (click)="createRecord(newCompany)">Create company</div>
+  </div>
+
+  <div class="ui cards">
+    <div class="card" *ngFor="let c of companies | async">
+      <div class="content">
+        <div class="header">{{c.name}}</div>
+        <div class="extra">
+          {{c.address1}}
+        </div>
+        <div class="extra">
+          {{c.zip}} {{c.city}}
+        </div>
+        <div class="description">
+          {{c.companyId}}
+        </div>
+      </div>
+      <div class="ui bottom attached button">
+        <i class="edit icon"></i>
+      </div>
+    </div>
+  </div>
+
+</div>
