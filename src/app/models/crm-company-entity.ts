@@ -64,6 +64,7 @@ export class CompanyEntity {
   deleteRecord(record: Company) {
     var index: number = this.companies.indexOf(record);
     this.companies[index] = record;
+    // prepare for sync framework
     // this.companies.splice(index, 1);
   }
 

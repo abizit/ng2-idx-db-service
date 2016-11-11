@@ -42,24 +42,9 @@ export class CompanyComponent implements OnInit {
     record.userId = this.config.userId;
     this.indexedDb.createRecordAsync(this.config.companyStore, record).forEach(
       (readyState)=> {
-        this.logger.logInfo('IndexedDB service: adding record: ' + readyState);
+        this.logger.logInfo('IndexedDB service: creating record: ' + readyState);
       }, null);
     this.entity.createRecord(record);
-  }
-
-  deleteRecord(record: Company) {
-    record.remove = true;
-    record.dirty = true;
-    record.lastSync = 0;
-    var key: string = record.companyId;
-    // this.indexedDb.deleteRecordAsync(this.config.companyStore, key).forEach(
-    this.indexedDb.updateRecordAsync(this.config.companyStore, key).forEach(
-      (readyState)=> {
-        this.logger.logInfo('IndexedDB service: removing record: ' + readyState);
-      }, null
-    );
-    // this.entity.deleteRecord(record);
-    this.entity.updateRecord(record);
   }
 
   updateRecord(record: Company) {
@@ -71,6 +56,23 @@ export class CompanyComponent implements OnInit {
         this.logger.logInfo('IndexedDB service: updating record: ' + readyState);
       }, null
     );
+    this.entity.updateRecord(record);
+  }
+
+  deleteRecord(record: Company) {
+    record.remove = true;
+    record.dirty = true;
+    record.lastSync = 0;
+    var key: string = record.companyId;
+    // prepare for sync framework
+    // this.indexedDb.deleteRecordAsync(this.config.companyStore, key).forEach(
+    this.indexedDb.updateRecordAsync(this.config.companyStore, key).forEach(
+      (readyState)=> {
+        this.logger.logInfo('IndexedDB service: removing record: ' + readyState);
+      }, null
+    );
+    // prepare for sync framework
+    // this.entity.deleteRecord(record);
     this.entity.updateRecord(record);
   }
 
