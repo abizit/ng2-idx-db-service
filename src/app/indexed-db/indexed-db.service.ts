@@ -1,3 +1,13 @@
+/**
+ * ANGULAR 2 INDEXEDDB
+ * IndexedDB in the new Angular 2 applications using TypeScript
+ * written by Roberto Simonetti
+ * MIT license
+ * https://github.com/robisim74/angular2indexedDB
+ *
+ * Modified by fhdk <fh@uex.dk>
+ */
+
 'use strict';
 
 import { Injectable } from '@angular/core';
