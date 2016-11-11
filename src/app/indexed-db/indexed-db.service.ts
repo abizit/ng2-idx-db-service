@@ -96,7 +96,6 @@ export class IndexedDbService {
     });
   }
 
-
   updateRecordAsync(storeName: string, record: any) {
     // Gets the object store.
     var store: IDBObjectStore = this.getObjectStore(storeName, "readwrite");

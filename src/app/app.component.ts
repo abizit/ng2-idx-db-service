@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
           this.indexedDB.getAllRecordsAsync(this.config.companyStore)
             .forEach((record: Company) => {
               if (record != null) {
-                this.cEntity.addRecord(record);
+                this.cEntity.createRecord(record);
               }
             }, null)
             .then(()=> this.logger.logInfo('IndexedDB service: ' + this.config.companyStore + ' obtaining all records  complete'))

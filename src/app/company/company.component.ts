@@ -44,7 +44,7 @@ export class CompanyComponent implements OnInit {
       (readyState)=> {
         this.logger.logInfo('IndexedDB service: adding record: ' + readyState);
       }, null);
-    this.entity.addRecord(record);
+    this.entity.createRecord(record);
   }
 
   deleteRecord(record: Company) {

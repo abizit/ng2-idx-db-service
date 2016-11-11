@@ -38,12 +38,22 @@ export class CompanyEntity {
   }
 
   /**
-   * Adds a company.
+   * Creates a company.
    *
    * @param record
    */
   createRecord(record: Company) {
     this.companies.push(record);
+  }
+
+  /**
+   * Edits a company.
+   *
+   * @param record
+   */
+  updateRecord(record: Company) {
+    var index: number = this.companies.indexOf(record);
+    this.companies[index] = record;
   }
 
   /**
@@ -55,16 +65,6 @@ export class CompanyEntity {
     var index: number = this.companies.indexOf(record);
     this.companies[index] = record;
     // this.companies.splice(index, 1);
-  }
-
-  /**
-   * Edits a company.
-   *
-   * @param record
-   */
-  updateRecord(record: Company) {
-    var index: number = this.companies.indexOf(record);
-    this.companies[index] = record;
   }
 
   /**
