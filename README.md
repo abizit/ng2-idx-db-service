@@ -2,6 +2,8 @@
 
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.19-3.
 
+Sourcecode in `indexed-db.service.ts` is forked from [robisim74/angular2indexedDB](https://github.com/robisim74/angular2indexedDB) and modified for complex types
+
 ## Development server
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
